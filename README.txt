@@ -3,7 +3,7 @@ conocimientos de base de datos y SQL,
 desde insercion, creacion de tablas, a consultas y trabajo con tablas, 
 hasta procedimientos y disparadores.
 
-Es algo rustico y algunas cosas estan basadas en inspiradas en otro
+Es algo rustico y algunas cosas estan basadas y/o inspiradas en otro
 proyecto relacionados a C++. Este proyecto de base de datos cuenta con 
 varias partes y modulos
 
