@@ -1,13 +1,15 @@
-#CORRECCIONES PERTINENTES LUEGO DE LA RECUPERACION
-#1 Creacion manual, #2 Consultas
 #---------Parte 1 - Creacion---------# 
 CREATE DATABASE EJEMPLO_BD; 
 USE EJEMPLO_BD; 
 
+-- Se pueden usar indices para mejorar la optimizacion de las consultas y se puede
+-- mejorar el enfasis en la optimizacion
+
 CREATE TABLE FIGURAS (
 	ID INTEGER NOT NULL AUTO_INCREMENT,
 	FIGURA_ID VARCHAR(6) NOT NULL,
-	FIGURA_COLECCION BOOL DEFAULT FALSE,
+    #(1) pertenece a coleccion (0) no pertenece a coleccion
+	FIGURA_COLECCION TINYINT DEFAULT 0,
 	FIGURA_NAME VARCHAR(10),
 	FIGURA_TIPO TINYINT, 
 	CONSTRAINT FIGURAS_PK PRIMARY KEY (ID) 
@@ -63,6 +65,7 @@ JOIN (CUADRADO AS C) ON (FI.ID=C.ID_CUADRADO AND FI.TIPO=1)
 WHERE C.LADO=5; 
 
 #3 Seleccionar informacion de las figuras referenciadas entre las tablas Figuras, Figuras indice, y alguna de Cuadrado, Circulo, Triangulo
+#El join dentro de la subquery puede ir por fuera. En la consulta principal.
 SELECT F.ID, F.FIGURA_ID, F.FIGURA_COLECCION, F.FIGURA_NAME, FI.TIPO 
 FROM FIGURAS AS F JOIN ( 
 	(SELECT FI.FIGURAX_ID, FI.TIPO 
@@ -82,7 +85,7 @@ FROM FIGURAS AS F JOIN (
 ORDER BY F.ID ASC;
 
 #4 Seleccionar la cantidad de tipos de figuras, de las primeras 100
-SELECT F.FIGURA_TIPO, count(*)
+SELECT F.FIGURA_TIPO, COUNT(*) as cantidad
 FROM FIGURAS AS F
 WHERE F.ID < 100
 GROUP BY F.FIGURA_TIPO;
