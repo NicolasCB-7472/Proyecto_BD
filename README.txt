@@ -9,4 +9,5 @@ varias partes y modulos
 
 ProyectoDatos -> Trabaja con la insercion de datos, no de forma extensa, algo precariamente
 ProyectoFiguras -> Trabaja con la creacion de tablas y algunas posible consultas
-Procedimientos&Disparadores -> Trabaja con Triggers y Store Procedure (SP)
+Procedimientos -> Trabaja con Store Procedure (SP)
+Disparadores -> Trabaja con Triggers
