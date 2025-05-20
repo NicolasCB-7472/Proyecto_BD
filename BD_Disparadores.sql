@@ -1,11 +1,11 @@
-#---------Parte 3 - Triggers ---------# 
+#---------Parte 2 - Triggers ---------# 
 #1 Se insertan datos no validos en figuras
 DELIMITER //
 CREATE TRIGGER BI_ValidFiguras BEFORE INSERT ON FIGURAS
 FOR EACH ROW
 BEGIN
 	-- ID is a code 6 char code (FXXXXX) and FIGURA_TIPO is capped to 10 figures
-	IF (NEW.ID NOT REGEXP '^F[0-9]{5}$' OR NEW.FIGURA_TIPO > 10) THEN
+	IF (NEW.FIGURAS_ID NOT REGEXP '^F[0-9]{5}$' OR NEW.FIGURA_TIPO > 10) THEN
 		SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT='La insercion en figuras no es valida';
     END IF;
 END;
@@ -21,7 +21,7 @@ BEGIN
     SELECT COUNT(*) INTO total_Figuras FROM FIGURAS;
 	
 	#100 is a magic value, could be a global constant, predifined number, or derivated one, etc
-	IF (total_Figuras > 100 )THEN
+	IF (total_Figuras >= 100 )THEN
 		SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT='El limite de figuras se ha alcanzado';
     END IF;
 END;
